@@ -4,304 +4,288 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Radhika Shukla — Data Analyst</title>
+  <meta name="description" content="Radhika Shukla — Data Analyst. SQL | Python | Power BI | R. Portfolio with projects and contact.">
 
-  <!-- Tailwind CSS (via CDN) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS (Animate on Scroll) -->
+  <!-- Bootstrap 4 (Mark uses Bootstrap 4 style) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Simple icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
     :root{
-      --bg: #0b1220;    /* deep navy bg */
+      --bg:#071027;
       --card: rgba(255,255,255,0.03);
-      --muted: #9aa8bf;
-      --accent: #14b8a6; /* teal */
-      --accent-2: #67e8f9; /* cyan */
+      --muted:#9aa8bf;
+      --accent:#14b8a6; /* teal */
+      --accent-2:#67e8f9;
+      --glass-border: rgba(255,255,255,0.04);
     }
-    html,body { height:100%; }
-    body {
-      background: linear-gradient(180deg, #071027 0%, var(--bg) 60%);
-      color: #e6eef8;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    html,body{ height:100%; }
+    body{
+      background: linear-gradient(180deg, #041226 0%, var(--bg) 70%);
+      color:#e6eef8;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       -webkit-font-smoothing:antialiased;
     }
-    /* simple glass card */
-    .glass {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.04);
-      backdrop-filter: blur(6px) saturate(120%);
-      border-radius: 12px;
-    }
-    a { color: var(--accent); }
-    .nav-link:hover { color: var(--accent-2); }
-    /* morph text caret */
-    .typed-cursor{ opacity:1; animation: blink .8s infinite; }
+    a { color:var(--accent); }
+    /* nav */
+    .nav-bg { background: rgba(2,6,23,0.55); border-bottom:1px solid var(--glass-border); backdrop-filter: blur(6px); }
+    .glass { background: var(--card); border:1px solid var(--glass-border); border-radius:12px; padding:18px; }
+    /* hero */
+    .hero { padding:48px 0; }
+    .typed-cursor { opacity:1; animation: blink .8s infinite; color:var(--accent-2); }
     @keyframes blink{ 50%{ opacity:0 } }
 
-    /* project card image */
-    .proj-img { height:160px; background-size:cover; background-position:center; border-bottom-left-radius: .5rem; border-bottom-right-radius: .5rem; }
+    /* project image */
+    .proj-img{ height:170px; background-size:cover; background-position:center; border-radius:6px; }
 
-    /* modal */
-    .modal-backdrop { background: rgba(2,6,23,0.7); backdrop-filter: blur(5px); }
+    /* modal image */
+    .modal-img{ width:100%; border-radius:6px; }
 
-    /* skills bar small style */
-    .skill-bg { background: rgba(255,255,255,0.04); height:10px; border-radius:999px; }
-    .skill-bar { height:10px; border-radius:999px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+    /* skill bars */
+    .skill-bg{ background: rgba(255,255,255,0.04); height:10px; border-radius:999px; }
+    .skill-bar{ height:10px; border-radius:999px; background: linear-gradient(90deg,var(--accent),var(--accent-2)); }
 
-    /* responsive tweaks for small screens */
-    @media (max-width:640px){
-      .proj-img{ height:120px; }
+    footer{ color:var(--muted); padding:36px 0; }
+
+    /* small screen tweaks */
+    @media (max-width:767px){
+      .proj-img{ height:140px; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-indigo-600 flex items-center justify-center text-black font-bold">RS</div>
-      <div>
-        <div class="text-white font-semibold">Radhika Shukla</div>
-        <div class="text-xs" style="color:var(--muted)">Data Analyst — AIML</div>
+  <nav class="nav-bg">
+    <div class="container d-flex align-items-center justify-content-between py-3">
+      <div class="d-flex align-items-center">
+        <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#062023">RS</div>
+        <div class="ml-3">
+          <div style="font-weight:600">Radhika Shukla</div>
+          <div style="font-size:12px;color:var(--muted)">Data Analyst — B.Tech (AIML)</div>
+        </div>
+      </div>
+      <div class="d-none d-md-flex align-items-center">
+        <a class="px-3" href="#about">About</a>
+        <a class="px-3" href="#skills">Skills</a>
+        <a class="px-3" href="#projects">Projects</a>
+        <a class="px-3" href="#contact">Contact</a>
+        <a class="ml-3 btn btn-sm" href="Radhika-Shukla-Resume.pdf" style="background:var(--accent);color:#062023" target="_blank">Resume</a>
+      </div>
+      <div class="d-md-none">
+        <button id="mobileBtn" class="btn btn-outline-light btn-sm">Menu</button>
       </div>
     </div>
-
-    <div class="hidden md:flex items-center gap-6 text-sm">
-      <a class="nav-link" href="#about">About</a>
-      <a class="nav-link" href="#skills">Skills</a>
-      <a class="nav-link" href="#projects">Projects</a>
-      <a class="nav-link" href="#contact">Contact</a>
-      <a href="Radhika-Shukla-Resume.pdf" class="ml-4 px-4 py-2 rounded-md text-black bg-teal-400 hover:bg-teal-300 text-sm" target="_blank">Resume</a>
-    </div>
-
-    <!-- mobile menu simple -->
-    <div class="md:hidden">
-      <button id="mobile-toggle" class="text-sm px-3 py-2 border rounded-md">Menu</button>
+    <div id="mobileMenu" class="d-md-none container" style="display:none;">
+      <div class="py-2">
+        <a class="d-block py-1" href="#about">About</a>
+        <a class="d-block py-1" href="#skills">Skills</a>
+        <a class="d-block py-1" href="#projects">Projects</a>
+        <a class="d-block py-1" href="#contact">Contact</a>
+        <a class="d-block py-1" href="Radhika-Shukla-Resume.pdf" target="_blank">Resume</a>
+      </div>
     </div>
   </nav>
 
-  <!-- mobile nav -->
-  <div id="mobile-nav" class="max-w-6xl mx-auto px-6 hidden">
-    <div class="flex flex-col gap-2 py-4">
-      <a href="#about" class="text-sm">About</a>
-      <a href="#skills" class="text-sm">Skills</a>
-      <a href="#projects" class="text-sm">Projects</a>
-      <a href="#contact" class="text-sm">Contact</a>
-      <a href="Radhika-Shukla-Resume.pdf" class="text-sm" target="_blank">Resume</a>
-    </div>
-  </div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="glass d-flex flex-column flex-md-row align-items-center">
+        <div class="md-col-8 pr-md-4" data-aos="fade-right">
+          <small style="color:var(--muted)">Hello — I'm</small>
+          <h1 class="display-4 font-weight-bold">Radhika Shukla</h1>
+          <div class="d-flex align-items-center">
+            <div style="color:#cfeff3;margin-right:8px;">I am a</div>
+            <div style="font-weight:600;font-size:1.25rem;color:#fff;">
+              <span id="morph">Data Analyst</span><span class="typed-cursor">|</span>
+            </div>
+          </div>
+          <p class="mt-3" style="color:#d6e6f3;max-width:640px;">
+            I convert business questions into clear analytics and dashboards using SQL, Python, R, and Power BI. I focus on reproducible analysis, stakeholder-ready visualizations and practical impact.
+          </p>
 
-  <!-- HERO (Mark-like morph + counters) -->
-  <header class="max-w-6xl mx-auto px-6 py-12">
-    <div class="glass p-8 flex flex-col md:flex-row items-center gap-8">
-      <div class="md:w-2/3">
-        <p class="text-sm text-muted mb-2" style="color:var(--muted)">Hello — I'm</p>
-        <h1 class="text-3xl md:text-4xl font-bold leading-tight">Radhika Shukla</h1>
+          <div class="mt-3">
+            <a class="btn btn-sm" href="#projects" style="background:var(--accent);color:#062023">View Projects</a>
+            <a class="btn btn-outline-light btn-sm ml-2" href="mailto:radhishukla03@gmail.com">Contact</a>
+          </div>
 
-        <div class="mt-3 flex items-center gap-2">
-          <div class="text-lg text-gray-200">I am a</div>
-          <div class="text-lg font-semibold text-white">
-            <span id="morph-text">Data Analyst</span><span class="typed-cursor">|</span>
+          <!-- counters -->
+          <div class="d-flex mt-4" data-aos="fade-up">
+            <div class="mr-4">
+              <div id="cntProjects" style="font-size:1.25rem;font-weight:700">0</div>
+              <div style="color:var(--muted);font-size:12px">Projects</div>
+            </div>
+            <div class="mr-4">
+              <div id="cntInterns" style="font-size:1.25rem;font-weight:700">0</div>
+              <div style="color:var(--muted);font-size:12px">Virtual internships</div>
+            </div>
+            <div>
+              <div id="cntCert" style="font-size:1.25rem;font-weight:700">0</div>
+              <div style="color:var(--muted);font-size:12px">Certificates</div>
+            </div>
           </div>
         </div>
 
-        <p class="mt-4 text-gray-300 max-w-xl">I convert business questions into clear analytics and dashboards using SQL, Python, R, and Power BI — building reproducible, stakeholder-ready insights.</p>
-
-        <div class="mt-6 flex gap-3">
-          <a href="#projects" class="px-4 py-2 rounded-md text-sm" style="background:var(--accent); color:#062023">View Projects</a>
-          <a href="mailto:radhishukla03@gmail.com" class="px-4 py-2 rounded-md border border-white/6 text-sm">Contact</a>
-        </div>
-
-        <!-- counters -->
-        <div class="mt-8 flex gap-8">
-          <div>
-            <div class="text-2xl font-semibold" id="counter-projects">0</div>
-            <div class="text-sm" style="color:var(--muted)">Projects</div>
+        <div class="md-col-4 text-center mt-4 mt-md-0" data-aos="fade-left">
+          <div style="width:180px;height:180px;margin:0 auto;border-radius:999px;overflow:hidden;border:6px solid rgba(255,255,255,0.06)">
+            <img src="radhika.png" alt="Radhika" style="width:100%;height:100%;object-fit:cover" onerror="this.src='https://via.placeholder.com/400?text=Add+radhika.png'"/>
           </div>
-          <div>
-            <div class="text-2xl font-semibold" id="counter-interns">0</div>
-            <div class="text-sm" style="color:var(--muted)">Virtual Internships</div>
-          </div>
-          <div>
-            <div class="text-2xl font-semibold" id="counter-cert">0</div>
-            <div class="text-sm" style="color:var(--muted)">Certificates</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="md:w-1/3 flex flex-col items-center gap-4">
-        <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-white/6">
-          <img src="radhika.png" alt="Radhika" class="w-full h-full object-cover object-center" onerror="this.src='https://via.placeholder.com/400x400.png?text=Add+radhika.png'"/>
-        </div>
-        <div class="text-center">
-          <div class="text-sm" style="color:var(--muted)">Top tools</div>
-          <div class="mt-2 flex gap-2 justify-center flex-wrap">
-            <span class="px-3 py-1 text-xs rounded bg-white/5">SQL</span>
-            <span class="px-3 py-1 text-xs rounded bg-white/5">Power BI</span>
-            <span class="px-3 py-1 text-xs rounded bg-white/5">Python</span>
-            <span class="px-3 py-1 text-xs rounded bg-white/5">R</span>
-          </div>
+          <div class="mt-3" style="color:var(--muted)">SQL • Python • Power BI • R</div>
         </div>
       </div>
     </div>
   </header>
 
   <!-- ABOUT -->
-  <section id="about" class="max-w-6xl mx-auto px-6 py-12" data-aos="fade-right">
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="glass p-6">
-        <h2 class="text-xl font-semibold text-teal-300">About me</h2>
-        <p class="mt-3 text-gray-300">Final-year Computer Science (AIML) student with practical experience in SQL (MySQL/Postgres), Python, R, and Power BI. I focus on building dashboards, conducting EDA, and producing reproducible analyses that influence decisions.</p>
-
-        <ul class="mt-4 text-sm" style="color:var(--muted)">
-          <li>• Education: B.Tech — Computer Science & Engineering (AIML)</li>
-          <li>• Tools: Power BI, Tableau, Excel, Databricks</li>
-          <li>• Languages: SQL, Python, R</li>
-        </ul>
-
-        <div class="mt-6 flex gap-3">
-          <a href="Radhika-Shukla-Resume.pdf" class="px-3 py-2 rounded-md text-sm" style="background:var(--accent); color:#062023" target="_blank">Download Resume</a>
-          <a href="https://linkedin.com/in/radhishukla03" target="_blank" class="px-3 py-2 rounded-md border border-white/6 text-sm">LinkedIn</a>
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8" data-aos="fade-right">
+          <h3 style="color:var(--accent)">About</h3>
+          <p style="color:#d6e6f3;">
+            Analytical and results-oriented final-year Computer Science student (AIML) with hands-on experience in R, Python, SQL (MySQL, PostgreSQL) and Power BI.
+            Proven ability to translate business problems into data-driven solutions using statistical modeling and visualization.
+          </p>
+          <ul style="color:var(--muted)">
+            <li>B.Tech — Computer Science & Engineering (AIML)</li>
+            <li>Tools: Power BI, Tableau, Excel, Databricks</li>
+            <li>Languages: SQL, Python, R</li>
+          </ul>
         </div>
-      </div>
-
-      <div class="glass p-6">
-        <h3 class="text-lg font-semibold text-teal-300">Key achievements</h3>
-        <ul class="mt-3 text-sm" style="color:var(--muted)">
-          <li>• Completed Power BI & R projects; published multiple GitHub repos.</li>
-          <li>• Databricks Fundamentals Accredited; Google Analytics certified.</li>
-          <li>• Presented startup idea at TiE mentoring session (Saarthi).</li>
-        </ul>
-
-        <!-- Skills bars (simple and clean) -->
-        <div class="mt-6">
-          <h4 class="text-sm font-medium text-white mb-2">Skills</h4>
-
-          <div class="space-y-4">
-            <div>
-              <div class="flex justify-between text-sm mb-1"><span>SQL</span><span style="color:var(--muted)">90%</span></div>
-              <div class="skill-bg"><div class="skill-bar" style="width:90%"></div></div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-sm mb-1"><span>Python</span><span style="color:var(--muted)">85%</span></div>
-              <div class="skill-bg"><div class="skill-bar" style="width:85%"></div></div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-sm mb-1"><span>Power BI</span><span style="color:var(--muted)">88%</span></div>
-              <div class="skill-bg"><div class="skill-bar" style="width:88%"></div></div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-sm mb-1"><span>R</span><span style="color:var(--muted)">80%</span></div>
-              <div class="skill-bg"><div class="skill-bar" style="width:80%"></div></div>
-            </div>
+        <div class="col-md-4" data-aos="fade-left">
+          <div class="glass">
+            <h6 style="color:var(--muted)">Top skills</h6>
+            <div class="mt-2" style="font-weight:600">SQL</div>
+            <div class="skill-bg mt-1"><div class="skill-bar" style="width:90%"></div></div>
+            <div class="mt-2" style="font-weight:600">Python</div>
+            <div class="skill-bg mt-1"><div class="skill-bar" style="width:85%"></div></div>
+            <div class="mt-2" style="font-weight:600">Power BI</div>
+            <div class="skill-bg mt-1"><div class="skill-bar" style="width:88%"></div></div>
+            <div class="mt-2" style="font-weight:600">R</div>
+            <div class="skill-bg mt-1"><div class="skill-bar" style="width:80%"></div></div>
           </div>
-
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS (cards open modals / full-card clickable) -->
-  <section id="projects" class="max-w-6xl mx-auto px-6 py-12" data-aos="fade-up">
-    <h2 class="text-xl font-semibold text-teal-300 mb-6">Selected Projects</h2>
+  <!-- PROJECTS -->
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h3 style="color:var(--accent)">Selected Projects</h3>
+      <p style="color:var(--muted)">Click any project to open in a new tab (repo / PBIX links included).</p>
 
-    <div class="grid md:grid-cols-3 gap-6">
-      <!-- Project 1 -->
-      <div class="glass overflow-hidden" role="button" tabindex="0">
-        <a class="block" href="https://github.com/radhishukla/Spotify-Data-Analysis" target="_blank" aria-label="Open Spotify Data Analysis in new tab">
-          <div class="proj-img" style="background-image:url('proj1.jpg');"></div>
-          <div class="p-4">
-            <h3 class="font-semibold text-white">Spotify Data Analysis</h3>
-            <p class="text-sm" style="color:var(--muted)">Analyzed 1.7M+ Spotify tracks — trends in duration, energy & popularity. Python, Pandas, Seaborn.</p>
-            <div class="mt-3 text-xs" style="color:var(--muted)">Python • Pandas • Visualization</div>
-          </div>
-        </a>
+      <div class="row">
+        <!-- 1 -->
+        <div class="col-md-4 mb-4" data-aos="zoom-in">
+          <a href="https://github.com/radhishukla/Spotify-Data-Analysis" target="_blank" class="text-reset">
+            <div class="glass h-100 p-0">
+              <div class="proj-img" style="background-image:url('proj1.jpg');"></div>
+              <div class="p-3">
+                <h5>Spotify Data Analysis</h5>
+                <p style="color:var(--muted);font-size:14px;">Analyzed 1.7M+ Spotify tracks to find trends in song duration, energy & popularity using Python.</p>
+                <div style="color:var(--muted);font-size:13px">Python • Pandas • Visualization</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 2 -->
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="80">
+          <a href="https://github.com/radhishukla/Electricity-Consumption-Time-Series-Forecasting" target="_blank" class="text-reset">
+            <div class="glass h-100 p-0">
+              <div class="proj-img" style="background-image:url('proj2.jpg');"></div>
+              <div class="p-3">
+                <h5>Electricity Consumption Forecasting</h5>
+                <p style="color:var(--muted);font-size:14px;">Daily forecasting (2006–2017) using STL decomposition, ARIMA & ETS in R.</p>
+                <div style="color:var(--muted);font-size:13px">R • Time Series</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3 -->
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="160">
+          <a href="https://github.com/radhishukla/Delivery-Time-Analysis" target="_blank" class="text-reset">
+            <div class="glass h-100 p-0">
+              <div class="proj-img" style="background-image:url('proj3.jpg');"></div>
+              <div class="p-3">
+                <h5>Delivery Performance Insights</h5>
+                <p style="color:var(--muted);font-size:14px;">EDA & regression model (R²=0.94) predicting delivery times using traffic & distance.</p>
+                <div style="color:var(--muted);font-size:13px">Python • Regression</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 4 -->
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="240">
+          <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Financial%20Reporting%20and%20Budget%20Analysis.pbix" target="_blank" class="text-reset">
+            <div class="glass h-100 p-0">
+              <div class="proj-img" style="background-image:url('proj4.jpg');"></div>
+              <div class="p-3">
+                <h5>Financial Reporting Dashboard</h5>
+                <p style="color:var(--muted);font-size:14px;">C-suite style dashboard: budgets, KPIs and DAX measures (Power BI).</p>
+                <div style="color:var(--muted);font-size:13px">Power BI • DAX</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 5 -->
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="320">
+          <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Madhav%20Ecommerce%20Sales%20Dashboard.pbix" target="_blank" class="text-reset">
+            <div class="glass h-100 p-0">
+              <div class="proj-img" style="background-image:url('proj5.jpg');"></div>
+              <div class="p-3">
+                <h5>E-Commerce Sales Dashboard</h5>
+                <p style="color:var(--muted);font-size:14px;">Interactive Power BI dashboard for sales KPIs and inventory decisions.</p>
+                <div style="color:var(--muted);font-size:13px">Power BI</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 6 -->
+        <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="400">
+          <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/HR%20Analytics%20Dashboard.pbix" target="_blank" class="text-reset">
+            <div class="glass h-100 p-0">
+              <div class="proj-img" style="background-image:url('proj6.jpg');"></div>
+              <div class="p-3">
+                <h5>HR Analytics Dashboard</h5>
+                <p style="color:var(--muted);font-size:14px;">Attrition & diversity analysis with actionable insights for retention (Power BI).</p>
+                <div style="color:var(--muted);font-size:13px">Power BI</div>
+              </div>
+            </div>
+          </a>
+        </div>
+
       </div>
-
-      <!-- Project 2 -->
-      <div class="glass overflow-hidden" role="button" tabindex="0">
-        <a class="block" href="https://github.com/radhishukla/Electricity-Consumption-Time-Series-Forecasting" target="_blank">
-          <div class="proj-img" style="background-image:url('proj2.jpg');"></div>
-          <div class="p-4">
-            <h3 class="font-semibold text-white">Electricity Consumption Forecasting</h3>
-            <p class="text-sm" style="color:var(--muted)">Daily electricity forecasting (2006–2017) using STL, ARIMA & ETS. R & ggplot2.</p>
-            <div class="mt-3 text-xs" style="color:var(--muted)">R • Time Series</div>
-          </div>
-        </a>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="glass overflow-hidden" role="button" tabindex="0">
-        <a class="block" href="https://github.com/radhishukla/Delivery-Time-Analysis" target="_blank">
-          <div class="proj-img" style="background-image:url('proj3.jpg');"></div>
-          <div class="p-4">
-            <h3 class="font-semibold text-white">Delivery Performance Insights</h3>
-            <p class="text-sm" style="color:var(--muted)">EDA & regression model (R² = 0.94) predicting delivery times. Python & scikit-learn.</p>
-            <div class="mt-3 text-xs" style="color:var(--muted)">Python • Regression</div>
-          </div>
-        </a>
-      </div>
-
-      <!-- Project 4 -->
-      <div class="glass overflow-hidden" role="button" tabindex="0">
-        <a class="block" href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Financial%20Reporting%20and%20Budget%20Analysis.pbix" target="_blank">
-          <div class="proj-img" style="background-image:url('proj4.jpg');"></div>
-          <div class="p-4">
-            <h3 class="font-semibold text-white">Financial Reporting Dashboard</h3>
-            <p class="text-sm" style="color:var(--muted)">C-suite style reporting: budget vs expenses, KPIs & DAX measures.</p>
-            <div class="mt-3 text-xs" style="color:var(--muted)">Power BI • DAX</div>
-          </div>
-        </a>
-      </div>
-
-      <!-- Project 5 -->
-      <div class="glass overflow-hidden" role="button" tabindex="0">
-        <a class="block" href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Madhav%20Ecommerce%20Sales%20Dashboard.pbix" target="_blank">
-          <div class="proj-img" style="background-image:url('proj5.jpg');"></div>
-          <div class="p-4">
-            <h3 class="font-semibold text-white">E-Commerce Sales Dashboard</h3>
-            <p class="text-sm" style="color:var(--muted)">Interactive dashboard for sales KPIs & inventory decisions.</p>
-            <div class="mt-3 text-xs" style="color:var(--muted)">Power BI</div>
-          </div>
-        </a>
-      </div>
-
-      <!-- Project 6 -->
-      <div class="glass overflow-hidden" role="button" tabindex="0">
-        <a class="block" href="https://github.com/radhishukla/Power-BI-Projects/blob/main/HR%20Analytics%20Dashboard.pbix" target="_blank">
-          <div class="proj-img" style="background-image:url('proj6.jpg');"></div>
-          <div class="p-4">
-            <h3 class="font-semibold text-white">HR Analytics Dashboard</h3>
-            <p class="text-sm" style="color:var(--muted)">Attrition & diversity analysis with actionable retention insights.</p>
-            <div class="mt-3 text-xs" style="color:var(--muted)">Power BI</div>
-          </div>
-        </a>
-      </div>
-
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="max-w-6xl mx-auto px-6 py-12" data-aos="fade-up">
-    <div class="glass p-6">
-      <h3 class="text-lg font-semibold text-teal-300">Contact</h3>
-      <div class="mt-3 grid md:grid-cols-2 gap-4">
-        <div>
-          <p class="text-sm" style="color:var(--muted)">Email</p>
-          <p class="font-medium">radhishukla03@gmail.com</p>
-          <p class="text-sm mt-3" style="color:var(--muted)">Phone</p>
-          <p class="font-medium">+91 87660 43165</p>
-        </div>
-        <div>
-          <p class="text-sm" style="color:var(--muted)">Professional</p>
-          <div class="mt-2 flex gap-2">
-            <a href="https://linkedin.com/in/radhishukla03" target="_blank" class="px-3 py-2 rounded-md border text-sm">LinkedIn</a>
-            <a href="https://github.com/radhishukla" target="_blank" class="px-3 py-2 rounded-md border text-sm">GitHub</a>
+  <section id="contact" class="py-5">
+    <div class="container">
+      <div class="glass p-4">
+        <h4 style="color:var(--accent)">Contact</h4>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <p style="color:var(--muted)">Email</p>
+            <p class="font-weight-medium">radhishukla03@gmail.com</p>
+
+            <p style="color:var(--muted)" class="mt-3">LinkedIn</p>
+            <p><a href="https://linkedin.com/in/radhishukla03" target="_blank">linkedin.com/in/radhishukla03</a></p>
+          </div>
+          <div class="col-md-6">
+            <p style="color:var(--muted)">GitHub</p>
+            <p><a href="https://github.com/radhishukla" target="_blank">github.com/radhishukla</a></p>
+
+            <p style="color:var(--muted)" class="mt-3">Phone</p>
+            <p>+91 87660 43165</p>
           </div>
         </div>
       </div>
@@ -309,75 +293,72 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="max-w-6xl mx-auto px-6 py-6 text-sm text-center" style="color:var(--muted)">
-    © 2025 Radhika Shukla · Built for hiring managers · Updated Aug 12, 2025
+  <footer class="text-center">
+    <div class="container">
+      <small>© 2025 Radhika Shukla · Built for hiring managers · Updated Aug 12, 2025</small>
+    </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script>
-    AOS.init({ duration: 700, once: true });
+  <!-- SCRIPTS: jQuery+Bootstrap, AOS, morph text, counters, placeholders -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    // Mobile navigation toggle
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    mobileToggle && mobileToggle.addEventListener('click', () => {
-      mobileNav.classList.toggle('hidden');
+  <script>
+    AOS.init({ duration:700, once:true });
+
+    // mobile toggle
+    document.getElementById('mobileBtn').addEventListener('click', function(){
+      const menu = document.getElementById('mobileMenu');
+      if(menu.style.display === 'none' || menu.style.display === '') menu.style.display = 'block';
+      else menu.style.display = 'none';
     });
 
-    // Simple morph text sequence
-    const phrases = ["Data Analyst", "SQL Specialist", "Power BI Developer", "Python Practitioner"];
-    const morphEl = document.getElementById('morph-text');
-    let pIndex = 0, charIndex = 0, deleting = false;
-    function morphTick(){
-      const current = phrases[pIndex];
-      if(!deleting){
-        morphEl.textContent = current.slice(0, charIndex+1);
-        charIndex++;
-        if(charIndex === current.length){ deleting=true; setTimeout(morphTick, 900); return; }
-      } else {
-        morphEl.textContent = current.slice(0, charIndex-1);
-        charIndex--;
-        if(charIndex === 0){ deleting=false; pIndex=(pIndex+1)%phrases.length; }
-      }
-      setTimeout(morphTick, deleting?40:80);
+    // morph text
+    const phrases = ["Data Analyst","SQL Specialist","Power BI Developer","Python Practitioner"];
+    const el = document.getElementById('morph');
+    let pi = 0, ci = 0, del=false;
+    function morph(){
+      const cur = phrases[pi];
+      if(!del){ el.textContent = cur.slice(0,ci+1); ci++; if(ci===cur.length){ del=true; setTimeout(morph,900); return; } }
+      else { el.textContent = cur.slice(0,ci-1); ci--; if(ci===0){ del=false; pi=(pi+1)%phrases.length; } }
+      setTimeout(morph, del?40:80);
     }
-    morphTick();
+    morph();
 
-    // Counters (Projects=6, Internships=2, Certificates=7)
-    function animateCounter(id, target, duration=1200) {
-      const el = document.getElementById(id);
-      let start = 0, startTime = null;
-      function step(timestamp){
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        el.textContent = Math.floor(progress * (target - start) + start);
-        if(progress < 1) requestAnimationFrame(step);
+    // counters (trigger once when hero is visible)
+    function animate(id,target,duration=900){
+      const elem = document.getElementById(id);
+      let start=0, startTime=null;
+      function step(ts){
+        if(!startTime) startTime = ts;
+        const prog = Math.min((ts-startTime)/duration,1);
+        elem.textContent = Math.floor(prog * target);
+        if(prog < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
     }
-    // animate when in view
-    const counters = [
-      {id:'counter-projects', target:6},
-      {id:'counter-interns', target:2},
-      {id:'counter-cert', target:7}
-    ];
-    const obs = new IntersectionObserver((entries, o) => {
+    // observe hero to start counters
+    const hero = document.querySelector('header');
+    const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(e => {
         if(e.isIntersecting){
-          counters.forEach(c => animateCounter(c.id, c.target));
-          o.disconnect();
+          animate('cntProjects',6); // real number of projects
+          animate('cntInterns',2);
+          animate('cntCert',7);
+          obs.disconnect();
         }
       });
     }, {threshold:0.5});
-    const hero = document.querySelector('header');
-    hero && obs.observe(hero);
+    io.observe(hero);
 
-    // Ensure placeholders if images missing
-    document.querySelectorAll('.proj-img').forEach((el, i) => {
-      const bg = el.style.backgroundImage;
-      if(!bg || bg === 'none') el.style.backgroundImage = "url('https://via.placeholder.com/600x400.png?text=Project+" + (i+1) + "')";
+    // ensure placeholder project images if missing
+    document.querySelectorAll('.proj-img').forEach((div,i) => {
+      const bg = div.style.backgroundImage;
+      if(!bg || bg === 'none') {
+        div.style.backgroundImage = "url('https://images.unsplash.com/photo-1526378724040-8a7f4f4c4c8f?auto=format&fit=crop&w=1200&q=60')";
+      }
     });
-
   </script>
 </body>
 </html>
