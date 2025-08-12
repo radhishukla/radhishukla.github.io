@@ -1,185 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Radhika Shukla | Data Analyst Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Radhika Shukla — Data Analyst</title>
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- AOS for reveal -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    /* Hero Background Canvas */
-    #hero-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+    /* Page base */
+    :root{
+      --bg:#071025;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.03);
+      --accent: #00F5FF;
+      --accent-2: #9B5CF6;
+      --glow: 0 6px 30px rgba(0,245,255,0.06);
     }
-    .hero-content {
-      position: relative;
-      z-index: 1;
+
+    body{
+      background: radial-gradient(ellipse at top left, rgba(9,30,63,0.4), transparent 20%),
+                  radial-gradient(ellipse at bottom right, rgba(155,92,246,0.08), transparent 15%),
+                  var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      color: #e6eef8;
+      line-height:1.5;
+    }
+
+    /* Glass card */
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      backdrop-filter: blur(8px) saturate(120%);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      border-radius: 14px;
+    }
+
+    /* Neon buttons */
+    .neon {
+      background: linear-gradient(90deg, rgba(0,245,255,0.08), rgba(155,92,246,0.06));
+      border: 1px solid rgba(0,245,255,0.18);
+      box-shadow: 0 8px 24px rgba(0,245,255,0.06), 0 0 12px rgba(155,92,246,0.02) inset;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .neon:hover{ transform: translateY(-4px); box-shadow: 0 18px 50px rgba(0,245,255,0.12); }
+
+    /* Typing cursor */
+    .typed-cursor{ opacity:1; animation: blink .8s infinite; }
+    @keyframes blink{ 50%{ opacity:0 } }
+
+    /* Particle canvas sizing */
+    #particle-canvas {
+      position: absolute; inset:0; z-index:0; pointer-events:none;
+    }
+
+    /* Hero content above canvas */
+    .hero-inner { position: relative; z-index:1; }
+
+    /* Project card hover screenshot */
+    .proj-thumb{
+      background-size: cover;
+      background-position: center;
+      height: 160px;
+      border-radius: 10px;
+      transition: transform .35s ease, filter .35s ease;
+      filter: brightness(.94) contrast(1.02);
+    }
+    .proj-card:hover .proj-thumb{ transform: scale(1.05); filter: brightness(1); }
+
+    /* circular photo glow */
+    .photo-ring {
+      width: 220px; height:220px;
+      border-radius:9999px;
+      padding:6px;
+      background: linear-gradient(135deg, rgba(0,245,255,0.18), rgba(155,92,246,0.12));
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    }
+    .photo-ring img{ width:100%; height:100%; object-fit:cover; border-radius:9999px; display:block; }
+
+    /* counters */
+    .counter { font-weight:700; font-size:2rem; color:var(--accent); text-shadow: 0 6px 30px rgba(0,245,255,0.06); }
+
+    /* small screens tweaks */
+    @media (max-width:768px){
+      .photo-ring{ width:160px; height:160px; }
+      .proj-thumb{ height:140px; }
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body>
 
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-r from-blue-900 to-cyan-500 text-white py-20 px-6 text-center overflow-hidden">
-    <canvas id="hero-bg"></canvas>
-    <div class="hero-content">
-      <h1 data-aos="fade-up" class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Radhika Shukla</h1>
-      <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl max-w-2xl mx-auto">Turning raw data into business gold | SQL • Python • Power BI • R</p>
-      <div data-aos="fade-up" data-aos-delay="400" class="mt-6 flex justify-center gap-4">
-        <a href="#projects" class="bg-white text-blue-800 px-5 py-2 rounded-lg font-medium shadow hover:shadow-lg transition">View My Work</a>
-        <a href="mailto:radhishukla03@gmail.com" class="bg-transparent border border-white px-5 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-800 transition">Contact Me</a>
+  <!-- Particle canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 flex items-center justify-center text-black font-bold">RS</div>
+      <div>
+        <div class="text-white font-semibold">Radhika Shukla</div>
+        <div class="text-xs text-slate-300">Data Analyst • AIML</div>
       </div>
     </div>
-  </section>
+    <div class="flex items-center gap-3">
+      <a href="#projects" class="text-sm text-slate-200 hover:text-white">Projects</a>
+      <a href="#about" class="text-sm text-slate-200 hover:text-white">About</a>
+      <a href="#contact" class="text-sm text-slate-200 hover:text-white">Contact</a>
+      <a href="Radhika-Shukla-Resume.pdf" class="ml-4 neon px-4 py-2 rounded-md text-sm font-medium">Download Resume</a>
+    </div>
+  </nav>
 
-  <!-- About Section -->
-  <section id="about" class="py-16 px-6 max-w-6xl mx-auto">
-    <h2 data-aos="fade-up" class="text-3xl font-bold text-center mb-10">About Me</h2>
-    <div class="md:flex md:items-center gap-10">
-      <!-- Photo -->
-      <div data-aos="fade-right" class="md:w-1/3 flex justify-center">
-        <img src="radhika.png" alt="Radhika Shukla" 
-             class="w-64 h-64 object-cover object-center rounded-full shadow-lg border-4 border-white">
-      </div>
-      <!-- Bio + Skills -->
-      <div class="md:w-2/3">
-        <div data-aos="fade-left" class="space-y-4">
-          <p>I’m a final-year Computer Science (AIML) student with a passion for transforming messy data into clear, actionable insights. Whether it’s wrangling datasets in Python, visualizing KPIs in Power BI, or building models in R, I thrive at the intersection of analytics and storytelling.</p>
-          <p>I’ve worked on datasets ranging from Spotify tracks to electricity consumption, and I love finding patterns that help people make better decisions.</p>
+  <!-- HERO -->
+  <header class="max-w-6xl mx-auto px-6 py-20 relative overflow-visible">
+    <div class="hero-inner glass p-10 rounded-2xl flex flex-col md:flex-row items-center gap-8">
+      <!-- left text -->
+      <div class="md:w-2/3" data-aos="fade-right">
+        <div class="text-slate-200 text-lg mb-3">Hey — I’m</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">Radhika Shukla</h1>
+        <div class="mt-3 text-cyan-200 text-lg">
+          <span class="opacity-80">I am a </span>
+          <span id="typed" class="font-semibold text-white"></span>
+          <span class="typed-cursor">|</span>
         </div>
-        <div data-aos="fade-left" data-aos-delay="200" class="mt-6">
-          <canvas id="skillsChart" class="bg-white p-4 rounded-lg shadow"></canvas>
+        <p class="mt-6 text-slate-300 max-w-xl">
+          Turning messy datasets into high-impact dashboards & predictive insights. SQL, Power BI, Python and R are my playgrounds — business impact is the goal.
+        </p>
+        <div class="mt-6 flex gap-3">
+          <a href="#projects" class="neon px-5 py-2 rounded-md font-semibold">See Projects</a>
+          <a href="mailto:radhishukla03@gmail.com" class="px-5 py-2 rounded-md border border-slate-700 hover:bg-slate-800">Let's talk</a>
+        </div>
+        <!-- stats -->
+        <div class="mt-8 flex gap-8">
+          <div class="text-center">
+            <div class="counter" data-target="10">0</div>
+            <div class="text-xs text-slate-300 mt-1">Dashboards</div>
+          </div>
+          <div class="text-center">
+            <div class="counter" data-target="6">0</div>
+            <div class="text-xs text-slate-300 mt-1">Projects</div>
+          </div>
+          <div class="text-center">
+            <div class="counter" data-target="3">0</div>
+            <div class="text-xs text-slate-300 mt-1">Internships</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right visual -->
+      <div class="md:w-1/3 flex flex-col items-center gap-6" data-aos="fade-left">
+        <div class="photo-ring">
+          <!-- replace this file with your photo named radhika.png -->
+          <img src="radhika.png" alt="Radhika Shukla photo" onerror="this.src='https://via.placeholder.com/400x400.png?text=Add+radhika.png'"/>
+        </div>
+        <div class="glass p-4 rounded-lg w-full text-center">
+          <div class="text-sm text-slate-300">Top tools</div>
+          <div class="mt-3 flex justify-center gap-2 flex-wrap">
+            <span class="px-3 py-1 text-xs rounded-md bg-slate-800/40 text-slate-100">SQL</span>
+            <span class="px-3 py-1 text-xs rounded-md bg-slate-800/40 text-slate-100">Power BI</span>
+            <span class="px-3 py-1 text-xs rounded-md bg-slate-800/40 text-slate-100">Python</span>
+            <span class="px-3 py-1 text-xs rounded-md bg-slate-800/40 text-slate-100">R</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT + SKILLS -->
+  <section id="about" class="max-w-6xl mx-auto px-6 py-12">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div data-aos="fade-right">
+        <div class="glass p-8 rounded-xl">
+          <h3 class="text-2xl font-semibold mb-3">About me</h3>
+          <p class="text-slate-300 mb-4">Final-year Computer Science (AIML) student focused on turning business questions into data products. I build dashboards, run analyses, and ship reproducible insights that teams actually use.</p>
+          <ul class="text-sm text-slate-300 space-y-2">
+            <li>• SQL (MySQL, PostgreSQL) — efficient data modeling & queries</li>
+            <li>• Power BI — C-suite dashboards, DAX, KPI storytelling</li>
+            <li>• Python & R — data cleaning, EDA, ML prototyping</li>
+          </ul>
+          <div class="mt-6 flex gap-3">
+            <a href="Radhika-Shukla-Resume.pdf" class="neon px-4 py-2 rounded-md text-sm font-medium">Download Resume</a>
+            <a href="https://linkedin.com/in/radhishukla03" target="_blank" class="px-4 py-2 border rounded-md text-sm">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div data-aos="fade-left">
+        <div class="glass p-6 rounded-xl">
+          <h4 class="text-lg font-medium mb-4">Skills — proficiency</h4>
+          <canvas id="skillsRadar" class="rounded-md bg-black/10 p-4"></canvas>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="bg-gray-100 py-16 px-6">
-    <h2 data-aos="fade-up" class="text-3xl font-bold text-center mb-12">Projects</h2>
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <div data-aos="zoom-in" class="bg-white rounded-xl shadow hover:shadow-lg transition p-5">
-        <h3 class="font-bold text-xl mb-2">Spotify Data Analysis</h3>
-        <p class="text-sm mb-4">Analyzed 1.7M+ Spotify tracks to uncover trends using Python, Pandas, and Seaborn.</p>
-        <a href="https://github.com/radhishukla/Spotify-Data-Analysis" target="_blank" class="text-blue-600 font-medium hover:underline">View Project →</a>
+  <!-- PROJECTS -->
+  <section id="projects" class="max-w-6xl mx-auto px-6 py-12">
+    <h3 class="text-3xl font-bold mb-6" data-aos="fade-up">Selected Projects</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="proj-card glass p-4" data-aos="zoom-in">
+        <div class="proj-thumb" style="background-image:url('proj1.jpg');"></div>
+        <h4 class="mt-4 font-semibold text-white">Spotify Data Analysis</h4>
+        <p class="text-sm text-slate-300 mt-2">Trended 1.7M+ tracks to find how audio features evolved over decades. Python, Pandas, Seaborn.</p>
+        <div class="mt-3 flex items-center justify-between">
+          <div class="text-xs text-slate-400">Python • Pandas • Visualization</div>
+          <a href="https://github.com/radhishukla/Spotify-Data-Analysis" target="_blank" class="text-sm text-cyan-300">View →</a>
+        </div>
       </div>
-      <div data-aos="zoom-in" data-aos-delay="100" class="bg-white rounded-xl shadow hover:shadow-lg transition p-5">
-        <h3 class="font-bold text-xl mb-2">Electricity Consumption Forecasting</h3>
-        <p class="text-sm mb-4">Forecasted Germany's electricity demand using R, STL decomposition, ARIMA, and ETS models.</p>
-        <a href="https://github.com/radhishukla/Electricity-Consumption-Time-Series-Forecasting" target="_blank" class="text-blue-600 font-medium hover:underline">View Project →</a>
+
+      <!-- Card 2 -->
+      <div class="proj-card glass p-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="proj-thumb" style="background-image:url('proj2.jpg');"></div>
+        <h4 class="mt-4 font-semibold text-white">Electricity Consumption Forecasting</h4>
+        <p class="text-sm text-slate-300 mt-2">Daily consumption forecasting (ARIMA/ETS) with accuracy evaluation and seasonal decomposition.</p>
+        <div class="mt-3 flex items-center justify-between">
+          <div class="text-xs text-slate-400">R • Time Series</div>
+          <a href="https://github.com/radhishukla/Electricity-Consumption-Time-Series-Forecasting" target="_blank" class="text-sm text-cyan-300">View →</a>
+        </div>
       </div>
-      <div data-aos="zoom-in" data-aos-delay="200" class="bg-white rounded-xl shadow hover:shadow-lg transition p-5">
-        <h3 class="font-bold text-xl mb-2">Delivery Performance Insights</h3>
-        <p class="text-sm mb-4">Built predictive models (R² = 0.94) to optimize delivery times based on traffic, distance, and weather.</p>
-        <a href="https://github.com/radhishukla/Delivery-Time-Analysis" target="_blank" class="text-blue-600 font-medium hover:underline">View Project →</a>
-      </div>
-      <div data-aos="zoom-in" data-aos-delay="300" class="bg-white rounded-xl shadow hover:shadow-lg transition p-5">
-        <h3 class="font-bold text-xl mb-2">Financial Reporting Dashboard</h3>
-        <p class="text-sm mb-4">Created a Power BI dashboard simulating C-suite reporting with KPIs and department budgets.</p>
-        <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Financial%20Reporting%20and%20Budget%20Analysis.pbix" target="_blank" class="text-blue-600 font-medium hover:underline">View Project →</a>
-      </div>
-      <div data-aos="zoom-in" data-aos-delay="400" class="bg-white rounded-xl shadow hover:shadow-lg transition p-5">
-        <h3 class="font-bold text-xl mb-2">E-Commerce Sales Dashboard</h3>
-        <p class="text-sm mb-4">Interactive Power BI dashboard visualizing KPIs, trends, and top products.</p>
-        <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Madhav%20Ecommerce%20Sales%20Dashboard.pbix" target="_blank" class="text-blue-600 font-medium hover:underline">View Project →</a>
-      </div>
-      <div data-aos="zoom-in" data-aos-delay="500" class="bg-white rounded-xl shadow hover:shadow-lg transition p-5">
-        <h3 class="font-bold text-xl mb-2">HR Analytics Dashboard</h3>
-        <p class="text-sm mb-4">Analyzed employee attrition & diversity metrics to improve retention.</p>
-        <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/HR%20Analytics%20Dashboard.pbix" target="_blank" class="text-blue-600 font-medium hover:underline">View Project →</a>
+
+      <!-- Card 3 -->
+      <div class="proj-card glass p-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="proj-thumb" style="background-image:url('proj3.jpg');"></div>
+        <h4 class="mt-4 font-semibold text-white">Delivery Performance Insights</h4>
+        <p class="text-sm text-slate-300 mt-2">Built a regression model (R²=0.94) to predict delivery time using traffic & distance features.</p>
+        <div class="mt-3 flex items-center justify-between">
+          <div class="text-xs text-slate-400">Python • Regression</div>
+          <a href="https://github.com/radhishukla/Delivery-Time-Analysis" target="_blank" class="text-sm text-cyan-300">View →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 px-6 text-center">
-    <h2 data-aos="fade-up" class="text-3xl font-bold mb-6">Let’s Work Together</h2>
-    <p data-aos="fade-up" data-aos-delay="200">Email me at <a href="mailto:radhishukla03@gmail.com" class="text-blue-600 hover:underline">radhishukla03@gmail.com</a></p>
-    <div data-aos="fade-up" data-aos-delay="400" class="flex justify-center gap-6 mt-4">
-      <a href="https://linkedin.com/in/radhishukla03" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a>
-      <a href="https://github.com/radhishukla" target="_blank" class="text-blue-600 hover:underline">GitHub</a>
+  <!-- CONTACT -->
+  <section id="contact" class="max-w-6xl mx-auto px-6 py-12">
+    <div class="glass p-8 rounded-xl grid md:grid-cols-2 gap-6 items-center" data-aos="fade-up">
+      <div>
+        <h3 class="text-2xl font-semibold">Let’s work together</h3>
+        <p class="text-slate-300 mt-2">Open to Data Analyst roles, internships, and freelance dashboard gigs. I turn messy files into clear decisions.</p>
+        <div class="mt-6">
+          <a href="mailto:radhishukla03@gmail.com" class="neon px-4 py-2 rounded-md">Email me</a>
+          <a href="https://github.com/radhishukla" class="ml-3 px-4 py-2 border rounded-md">GitHub</a>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="text-sm text-slate-300">Email</div>
+        <div class="text-lg font-medium mt-1">radhishukla03@gmail.com</div>
+        <div class="mt-6 text-sm text-slate-400">Phone:</div>
+        <div class="mt-1">+91 87660 43165</div>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white text-center py-4">
-    <p>© 2025 Radhika Shukla | Built with 💙, TailwindCSS, AOS & Canvas Magic</p>
+  <!-- FOOTER -->
+  <footer class="max-w-6xl mx-auto px-6 py-8 text-center text-slate-400">
+    © 2025 Radhika Shukla · Built with TailwindCSS & a lil' neon
   </footer>
 
-  <!-- Skills Chart -->
+  <!-- SCRIPTS: Typed effect, Counters, Chart, Particles, AOS init -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    const ctx = document.getElementById('skillsChart').getContext('2d');
+    AOS.init({ duration: 700, once: true });
+
+    /* TYPING effect (tiny custom) */
+    const phrases = ["Data Analyst", "SQL Specialist", "Power BI Developer", "Python Enthusiast"];
+    const typedEl = document.getElementById('typed');
+    let pi = 0, ci = 0, deleting = false;
+    function typeTick(){
+      const current = phrases[pi];
+      if(!deleting) {
+        typedEl.textContent = current.slice(0, ci+1);
+        ci++;
+        if(ci === current.length){ deleting = true; setTimeout(typeTick, 1200); return; }
+      } else {
+        typedEl.textContent = current.slice(0, ci-1);
+        ci--;
+        if(ci === 0){ deleting = false; pi = (pi+1)%phrases.length; }
+      }
+      setTimeout(typeTick, deleting ? 50 : 90);
+    }
+    typeTick();
+
+    /* Counters */
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(c => {
+      const target = +c.getAttribute('data-target');
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 60));
+      function inc(){
+        current += step;
+        if(current >= target){ c.textContent = target; } else { c.textContent = current; requestAnimationFrame(inc); }
+      }
+      // run when visible
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(e => { if(e.isIntersecting){ inc(); o.disconnect(); } });
+      }, { threshold: 0.6 });
+      obs.observe(c);
+    });
+
+    /* Radar Chart */
+    const ctx = document.getElementById('skillsRadar').getContext('2d');
     new Chart(ctx, {
       type: 'radar',
       data: {
-        labels: ['SQL', 'Python', 'Power BI', 'R', 'Data Visualization', 'Statistical Modeling'],
+        labels: ['SQL','Python','Power BI','R','Visualization','Modeling'],
         datasets: [{
-          label: 'Skill Proficiency',
-          data: [90, 85, 88, 80, 92, 87],
-          backgroundColor: 'rgba(37, 99, 235, 0.2)',
-          borderColor: 'rgb(37, 99, 235)',
+          label: 'Proficiency',
+          data: [90,85,88,80,92,87],
+          backgroundColor: 'rgba(0,245,255,0.09)',
+          borderColor: '#00F5FF',
+          pointBackgroundColor: '#00F5FF',
           borderWidth: 2
         }]
       },
-      options: { responsive: true, scales: { r: { suggestedMin: 0, suggestedMax: 100 } } }
+      options: {
+        responsive:true,
+        scales: { r: { angleLines: { color: 'rgba(255,255,255,0.05)' }, grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color:'#9fb7d6' } } },
+        plugins: { legend: { display:false } }
+      }
     });
-  </script>
 
-  <!-- Animated Background -->
-  <script>
-    const canvas = document.getElementById('hero-bg');
-    const ctxBg = canvas.getContext('2d');
-    let w, h, particles = [];
-    function init() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = document.querySelector('section').offsetHeight;
-      particles = Array.from({ length: 60 }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: Math.random() * 3 + 1,
-        dx: Math.random() - 0.5,
-        dy: Math.random() - 0.5
-      }));
-    }
-    function draw() {
-      ctxBg.clearRect(0, 0, w, h);
-      particles.forEach((p, i) => {
-        ctxBg.beginPath();
-        ctxBg.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctxBg.fillStyle = "rgba(255,255,255,0.7)";
-        ctxBg.fill();
-        p.x += p.dx;
-        p.y += p.dy;
-        if (p.x < 0 || p.x > w) p.dx *= -1;
-        if (p.y < 0 || p.y > h) p.dy *= -1;
-        particles.forEach((p2, j) => {
-          if (i !== j) {
-            let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (dist < 120) {
-              ctxBg.beginPath();
-              ctxBg.moveTo(p.x, p.y);
-              ctxBg.lineTo(p2.x, p2.y);
-              ctxBg.strokeStyle = "rgba(255,255,255,0.1)";
-              ctxBg.stroke();
-            }
-          }
+    /* Simple particles network for background */
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles;
+    function resizeCanvas(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; initParticles(); }
+    window.addEventListener('resize', resizeCanvas);
+    function initParticles(){
+      particles = [];
+      const count = Math.max(40, Math.floor(W/30));
+      for(let i=0;i<count;i++){
+        particles.push({
+          x: Math.random()*W,
+          y: Math.random()*H,
+          vx: (Math.random()-0.5)*0.4,
+          vy: (Math.random()-0.5)*0.4,
+          r: Math.random()*1.6 + 0.6
         });
-      });
-      requestAnimationFrame(draw);
+      }
     }
-    window.addEventListener('resize', init);
-    init();
-    draw();
-  </script>
+    function drawParticles(){
+      ctx.clearRect(0,0,W,H);
+      for(let i=0;i<particles.length;i++){
+        const p = particles[i];
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < 0) p.x = W; if(p.x > W) p.x = 0;
+        if(p.y < 0) p.y = H; if(p.y > H) p.y = 0;
+        // draw
+        ctx.beginPath(); ctx.fillStyle = 'rgba(0,245,255,0.06)'; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+        // connect
+        for(let j=i+1;j<particles.length;j++){
+          const q = particles[j];
+          const d = Math.hypot(p.x-q.x, p.y-q.y);
+          if(d < 140){
+            ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
+            ctx.strokeStyle = 'rgba(0,245,255,' + (0.03 + (140-d)/600) +')'; ctx.lineWidth = 1; ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    resizeCanvas(); drawParticles();
 
-  <!-- AOS Animation -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init({ duration: 800, once: true });</script>
+  </script>
 </body>
 </html>
