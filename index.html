@@ -2,31 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Radhika Shukla — Data Analyst</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Radhika Shukla — Data Analyst Portfolio</title>
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Chart.js CDN -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <style>
-    body {
-      background: linear-gradient(to bottom, #0b0f1a, #121826);
-      color: #e0e6f0;
-      font-family: 'Inter', sans-serif;
-    }
-    .card {
-      background-color: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 1rem;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
+    body { background-color: #0f172a; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+    .card { background-color: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+    .btn { background-color: #14b8a6; color: #0f172a; padding: 0.5rem 1rem; border-radius: 6px; transition: all 0.3s ease; }
+    .btn:hover { background-color: #67e8f9; color: #0f172a; box-shadow: 0 0 15px #67e8f9; }
   </style>
 </head>
 <body>
@@ -34,93 +28,106 @@
 <!-- Header -->
 <header class="py-6 border-b border-white/10">
   <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-cyan-400">Radhika Shukla</h1>
+    <h1 class="text-2xl font-bold text-teal-400">Radhika Shukla</h1>
     <nav class="space-x-6 text-sm">
-      <a href="#about" class="hover:text-cyan-300">About</a>
-      <a href="#skills" class="hover:text-cyan-300">Skills</a>
-      <a href="#projects" class="hover:text-cyan-300">Projects</a>
-      <a href="#contact" class="hover:text-cyan-300">Contact</a>
+      <a href="#about" class="hover:text-teal-300">About</a>
+      <a href="#skills" class="hover:text-teal-300">Skills</a>
+      <a href="#projects" class="hover:text-teal-300">Projects</a>
+      <a href="#contact" class="hover:text-teal-300">Contact</a>
     </nav>
   </div>
 </header>
 
 <!-- Hero -->
-<section class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
+<section class="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
   <div>
-    <h2 class="text-4xl font-bold">Data Analyst | SQL | Python | Power BI</h2>
-    <p class="mt-4 text-gray-400">Transforming raw data into actionable insights with interactive dashboards and analytical models.</p>
+    <h2 class="text-4xl font-bold text-white">Data Analyst | SQL | Python | Power BI</h2>
+    <p class="mt-4 text-gray-400">Transforming raw data into actionable insights through analytics, visualization, and modeling.</p>
     <div class="mt-6 space-x-4">
-      <a href="Radhika-Shukla-Resume.pdf" class="bg-cyan-500 hover:bg-cyan-400 text-black px-4 py-2 rounded">Download Resume</a>
-      <a href="#contact" class="border border-cyan-500 px-4 py-2 rounded hover:bg-cyan-500 hover:text-black">Contact Me</a>
+      <a href="Radhika-Shukla-Resume.pdf" class="btn" target="_blank">Download Resume</a>
+      <a href="#contact" class="btn">Contact Me</a>
     </div>
   </div>
   <div class="flex justify-center">
-    <img src="radhika.png" alt="Radhika Shukla" class="w-64 h-64 rounded-full object-cover border-4 border-cyan-500" onerror="this.src='https://via.placeholder.com/300?text=Your+Photo+Here'">
+    <img src="radhika.png" alt="Radhika Shukla" class="w-64 h-64 rounded-full object-cover border-4 border-teal-400" onerror="this.src='https://via.placeholder.com/300?text=Photo'">
   </div>
 </section>
 
 <!-- About -->
-<section id="about" class="max-w-6xl mx-auto px-6 py-12">
-  <h3 class="text-2xl font-bold mb-4">About Me</h3>
-  <p class="text-gray-400">Final-year Computer Science (AIML) student with hands-on experience in SQL, Python, R, and Power BI. Passionate about solving business problems using data-driven solutions and creating impactful dashboards for decision-making.</p>
+<section id="about" class="max-w-6xl mx-auto px-6 py-12" data-aos="fade-right">
+  <h3 class="text-2xl font-bold mb-4 text-teal-400">About Me</h3>
+  <p class="text-gray-300">Final-year Computer Science (AIML) student with skills in SQL, Python, R, and Power BI. Passionate about uncovering insights from data, building interactive dashboards, and enabling data-driven decision-making.</p>
 </section>
 
 <!-- Skills -->
-<section id="skills" class="max-w-6xl mx-auto px-6 py-12">
-  <h3 class="text-2xl font-bold mb-6">Skills</h3>
+<section id="skills" class="max-w-6xl mx-auto px-6 py-12" data-aos="fade-left">
+  <h3 class="text-2xl font-bold mb-6 text-teal-400">Skills</h3>
   <canvas id="skillsChart" height="200"></canvas>
 </section>
 
 <!-- Projects -->
-<section id="projects" class="max-w-6xl mx-auto px-6 py-12">
-  <h3 class="text-2xl font-bold mb-6">Projects</h3>
+<section id="projects" class="max-w-6xl mx-auto px-6 py-12" data-aos="fade-up">
+  <h3 class="text-2xl font-bold mb-6 text-teal-400">Projects</h3>
   <div class="grid md:grid-cols-3 gap-6">
-    <!-- Each project card -->
-    <div class="card">
-      <img src="https://via.placeholder.com/400x200?text=Spotify+Data+Analysis" class="rounded mb-4">
-      <h4 class="font-semibold">Spotify Data Analysis</h4>
-      <p class="text-gray-400 text-sm mt-2">Analyzed 1.7M+ Spotify tracks to identify trends using Python, Pandas, and Seaborn.</p>
-      <a href="https://github.com/radhishukla/Spotify-Data-Analysis" target="_blank" class="text-cyan-400 text-sm mt-2 inline-block">View Project →</a>
-    </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/400x200?text=Electricity+Forecasting" class="rounded mb-4">
-      <h4 class="font-semibold">Electricity Consumption Forecasting</h4>
-      <p class="text-gray-400 text-sm mt-2">Time series forecasting for Germany's electricity consumption using R & ggplot2.</p>
-      <a href="https://github.com/radhishukla/Electricity-Consumption-Time-Series-Forecasting" target="_blank" class="text-cyan-400 text-sm mt-2 inline-block">View Project →</a>
-    </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/400x200?text=Delivery+Performance" class="rounded mb-4">
-      <h4 class="font-semibold">Delivery Performance Insights</h4>
-      <p class="text-gray-400 text-sm mt-2">Regression model (R²=0.94) to predict delivery times using Python & scikit-learn.</p>
-      <a href="https://github.com/radhishukla/Delivery-Time-Analysis" target="_blank" class="text-cyan-400 text-sm mt-2 inline-block">View Project →</a>
-    </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/400x200?text=Financial+Dashboard" class="rounded mb-4">
-      <h4 class="font-semibold">Financial Reporting Dashboard</h4>
-      <p class="text-gray-400 text-sm mt-2">Power BI dashboard for budget vs expenses and department KPIs.</p>
-      <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Financial%20Reporting%20and%20Budget%20Analysis.pbix" target="_blank" class="text-cyan-400 text-sm mt-2 inline-block">View Project →</a>
-    </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/400x200?text=E-commerce+Dashboard" class="rounded mb-4">
-      <h4 class="font-semibold">E-Commerce Sales Dashboard</h4>
-      <p class="text-gray-400 text-sm mt-2">Interactive Power BI dashboard for sales KPIs and inventory guidance.</p>
-      <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Madhav%20Ecommerce%20Sales%20Dashboard.pbix" target="_blank" class="text-cyan-400 text-sm mt-2 inline-block">View Project →</a>
-    </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/400x200?text=HR+Analytics+Dashboard" class="rounded mb-4">
-      <h4 class="font-semibold">HR Analytics Dashboard</h4>
-      <p class="text-gray-400 text-sm mt-2">Attrition & diversity analysis dashboard in Power BI for retention insights.</p>
-      <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/HR%20Analytics%20Dashboard.pbix" target="_blank" class="text-cyan-400 text-sm mt-2 inline-block">View Project →</a>
-    </div>
+    
+    <!-- Project Card -->
+    <a href="https://github.com/radhishukla/Spotify-Data-Analysis" target="_blank" class="card">
+      <img src="https://via.placeholder.com/400x200?text=Spotify+Data+Analysis" alt="" class="w-full">
+      <div class="p-4">
+        <h4 class="font-semibold text-white">Spotify Data Analysis</h4>
+        <p class="text-gray-400 text-sm mt-2">Analyzed 1.7M+ tracks for trends using Python, Pandas, and Seaborn.</p>
+      </div>
+    </a>
+
+    <a href="https://github.com/radhishukla/Electricity-Consumption-Time-Series-Forecasting" target="_blank" class="card">
+      <img src="https://via.placeholder.com/400x200?text=Electricity+Forecasting" alt="" class="w-full">
+      <div class="p-4">
+        <h4 class="font-semibold text-white">Electricity Consumption Forecasting</h4>
+        <p class="text-gray-400 text-sm mt-2">Time series forecasting for Germany's electricity usage using R.</p>
+      </div>
+    </a>
+
+    <a href="https://github.com/radhishukla/Delivery-Time-Analysis" target="_blank" class="card">
+      <img src="https://via.placeholder.com/400x200?text=Delivery+Performance" alt="" class="w-full">
+      <div class="p-4">
+        <h4 class="font-semibold text-white">Delivery Performance Insights</h4>
+        <p class="text-gray-400 text-sm mt-2">Regression model (R²=0.94) predicting delivery times.</p>
+      </div>
+    </a>
+
+    <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Financial%20Reporting%20and%20Budget%20Analysis.pbix" target="_blank" class="card">
+      <img src="https://via.placeholder.com/400x200?text=Financial+Dashboard" alt="" class="w-full">
+      <div class="p-4">
+        <h4 class="font-semibold text-white">Financial Reporting Dashboard</h4>
+        <p class="text-gray-400 text-sm mt-2">Budget vs expenses tracking in Power BI.</p>
+      </div>
+    </a>
+
+    <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/Madhav%20Ecommerce%20Sales%20Dashboard.pbix" target="_blank" class="card">
+      <img src="https://via.placeholder.com/400x200?text=E-commerce+Dashboard" alt="" class="w-full">
+      <div class="p-4">
+        <h4 class="font-semibold text-white">E-Commerce Sales Dashboard</h4>
+        <p class="text-gray-400 text-sm mt-2">Sales KPIs and inventory guidance in Power BI.</p>
+      </div>
+    </a>
+
+    <a href="https://github.com/radhishukla/Power-BI-Projects/blob/main/HR%20Analytics%20Dashboard.pbix" target="_blank" class="card">
+      <img src="https://via.placeholder.com/400x200?text=HR+Analytics" alt="" class="w-full">
+      <div class="p-4">
+        <h4 class="font-semibold text-white">HR Analytics Dashboard</h4>
+        <p class="text-gray-400 text-sm mt-2">Attrition & diversity analysis in Power BI.</p>
+      </div>
+    </a>
+
   </div>
 </section>
 
 <!-- Contact -->
-<section id="contact" class="max-w-6xl mx-auto px-6 py-12">
-  <h3 class="text-2xl font-bold mb-4">Contact</h3>
-  <p>Email: <a href="mailto:radhishukla03@gmail.com" class="text-cyan-400">radhishukla03@gmail.com</a></p>
-  <p class="mt-2">LinkedIn: <a href="https://linkedin.com/in/radhishukla03" class="text-cyan-400" target="_blank">linkedin.com/in/radhishukla03</a></p>
-  <p class="mt-2">GitHub: <a href="https://github.com/radhishukla" class="text-cyan-400" target="_blank">github.com/radhishukla</a></p>
+<section id="contact" class="max-w-6xl mx-auto px-6 py-12" data-aos="fade-up">
+  <h3 class="text-2xl font-bold mb-4 text-teal-400">Contact</h3>
+  <p>Email: <a href="mailto:radhishukla03@gmail.com" class="text-cyan-300">radhishukla03@gmail.com</a></p>
+  <p class="mt-2">LinkedIn: <a href="https://linkedin.com/in/radhishukla03" class="text-cyan-300" target="_blank">linkedin.com/in/radhishukla03</a></p>
+  <p class="mt-2">GitHub: <a href="https://github.com/radhishukla" class="text-cyan-300" target="_blank">github.com/radhishukla</a></p>
 </section>
 
 <!-- Footer -->
@@ -128,33 +135,37 @@
   © 2025 Radhika Shukla · Data Analyst Portfolio
 </footer>
 
-<!-- Chart.js Script -->
+<!-- Scripts -->
 <script>
+  // Skills Horizontal Bar Chart
   const ctx = document.getElementById('skillsChart').getContext('2d');
   new Chart(ctx, {
-    type: 'radar',
+    type: 'bar',
     data: {
-      labels: ['SQL', 'Python', 'Power BI', 'R', 'Visualization', 'Modeling'],
+      labels: ['SQL', 'Python', 'Power BI', 'R', 'Data Visualization', 'Data Modeling'],
       datasets: [{
-        label: 'Proficiency',
+        label: 'Proficiency (%)',
         data: [90, 85, 88, 80, 92, 87],
-        backgroundColor: 'rgba(34,211,238,0.2)',
-        borderColor: '#22d3ee',
-        borderWidth: 2,
-        pointBackgroundColor: '#22d3ee'
+        backgroundColor: '#14b8a6'
       }]
     },
     options: {
+      indexAxis: 'y',
       scales: {
-        r: {
-          angleLines: { color: 'rgba(255,255,255,0.1)' },
+        x: {
           grid: { color: 'rgba(255,255,255,0.1)' },
-          pointLabels: { color: '#e0e6f0' },
-          ticks: { color: '#e0e6f0', backdropColor: 'transparent' }
+          ticks: { color: '#e2e8f0' }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.1)' },
+          ticks: { color: '#e2e8f0' }
         }
       }
     }
   });
+
+  // Init AOS
+  AOS.init({ duration: 800, once: true });
 </script>
 
 </body>
